@@ -19,7 +19,7 @@ class ChlorineConfig {
 			"disconnect_screen_message"          => "Disconnected from server",
 			"decoding_load_threshold"            => 10,
 			"packet_length_threshold"            => 2 ** 21,
-			"max_violation"                      => 35,
+			"max_violation"                      => 350,
 			"history_size"                       => 200,
 			"block_address_timeout"              => 300,
 			"decoding_load_violation_thresholds" => [
