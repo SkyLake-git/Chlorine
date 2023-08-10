@@ -128,6 +128,8 @@ class ChlorineCommand extends Command {
 		$observerByTime = null;
 		$packetLength = PHP_INT_MIN;
 		$observerByPacketLength = null;
+
+
 		foreach (PacketObserver::getAllObservers() as $observer) {
 			$averageTime = array_sum(array_map(fn($watcher) => $watcher->getDecodeTime(), $observer->getLastResults())) / $observer->getHistorySize();
 			$averagePacketLength = array_sum(array_map(fn($watcher) => strlen($watcher->packetBuffer), $observer->getLastResults())) / $observer->getHistorySize();
@@ -158,6 +160,10 @@ class ChlorineCommand extends Command {
 		if (!is_null($observerByPacketLength)) {
 			$sender->sendMessage(TextFormat::GREEN . "Most suspicious (at packet length): ");
 			$this->executeInspect($sender, $commandLabel, ["", $observerByPacketLength->getSession()->getPlayerInfo()->getUsername()]);
+		}
+
+		if (is_null($observerByTime) && is_null($observerByPacketLength)) {
+			$sender->sendMessage(TextFormat::GREEN . "Not found");
 		}
 	}
 }

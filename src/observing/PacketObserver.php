@@ -72,7 +72,11 @@ class PacketObserver {
 	 * @return Traversable<mixed, PacketObserver>
 	 */
 	public static function getAllObservers(): Traversable {
-		return self::$sessions->getIterator();
+		return self::getSessions()->getIterator();
+	}
+
+	private static function getSessions(): WeakMap {
+		return self::$sessions ??= new WeakMap();
 	}
 
 	protected static function onPacketDecode(DataPacketDecodeEvent $event): void {
@@ -99,9 +103,7 @@ class PacketObserver {
 	}
 
 	public static function get(NetworkSession $session): self {
-		self::$sessions ??= new WeakMap();
-
-		return self::$sessions[$session] ??= new self($session);
+		return self::getSessions()[$session] ??= new self($session);
 	}
 
 	protected function handleDecode(PacketWatcher $watcher): void {
