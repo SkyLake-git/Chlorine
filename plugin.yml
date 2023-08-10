@@ -1,0 +1,8 @@
+---
+name: Chlorine
+version: 1.0.0
+author: Lyrica0954
+main: Lyrica0954\Chlorine\Main
+api: 5.4.2
+src-namespace-prefix: Lyrica0954\Chlorine
+...
