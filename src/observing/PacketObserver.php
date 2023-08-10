@@ -131,7 +131,10 @@ class PacketObserver {
 
 	protected function detect(): void {
 		$this->session->disconnect(ChlorineConfig::getInstance()->getDisconnectMessage(), ChlorineConfig::getInstance()->getDisconnectScreenMessage());
-		self::getRakLib()->blockAddress($this->session->getIp());
+		$timeout = ChlorineConfig::getInstance()->getBlockAddressTimeout();
+		if ($timeout > 0) {
+			self::getRakLib()->blockAddress($this->session->getIp(), $timeout);
+		}
 		$this->flaggedForDispose = true;
 	}
 
