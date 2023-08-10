@@ -13,19 +13,15 @@ use pocketmine\event\server\DataPacketDecodeEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\network\mcpe\protocol\ServerboundPacket;
-use pocketmine\network\mcpe\raklib\RakLibInterface;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
-use RuntimeException;
 use Traversable;
 use WeakMap;
 
 class PacketObserver {
 
 	private static ?WeakMap $sessions = null;
-
-	private static ?RakLibInterface $rakLib = null;
 
 	/**
 	 * @var PacketWatcher|null
@@ -135,25 +131,9 @@ class PacketObserver {
 		$this->session->disconnect(ChlorineConfig::getInstance()->getDisconnectMessage(), ChlorineConfig::getInstance()->getDisconnectScreenMessage());
 		$timeout = ChlorineConfig::getInstance()->getBlockAddressTimeout();
 		if ($timeout > 0) {
-			self::getRakLib()->blockAddress($this->session->getIp(), $timeout);
+			Server::getInstance()->getNetwork()->blockAddress($this->session->getIp(), $timeout);
 		}
 		$this->flaggedForDispose = true;
-	}
-
-	private static function getRakLib(): RakLibInterface {
-		if (is_null(self::$rakLib)) {
-			foreach (Server::getInstance()->getNetwork()->getInterfaces() as $interface) {
-				if ($interface instanceof RakLibInterface) { // AdvancedNetworkInterface?
-					self::$rakLib = $interface;
-				}
-			}
-
-			if (is_null(self::$rakLib)) {
-				throw new RuntimeException("RakLib network interface not found");
-			}
-		}
-
-		return self::$rakLib;
 	}
 
 	protected static function onPacketReceive(DataPacketReceiveEvent $event): void {
