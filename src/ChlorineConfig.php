@@ -21,6 +21,7 @@ class ChlorineConfig {
 			"packet_length_threshold"            => 2 ** 21,
 			"max_violation"                      => 35,
 			"history_size"                       => 200,
+			"block_address_timeout"              => 300,
 			"decoding_load_violation_thresholds" => [
 				"level_alert"     => 0.25,
 				"level_warn"      => 0.4,
@@ -41,12 +42,16 @@ class ChlorineConfig {
 		return self::$instance ?? throw new RuntimeException("Not loaded");
 	}
 
+	public function getBlockAddressTimeout(): int {
+		return (int) $this->config->get("block_address_timeout");
+	}
+
 	public function getMaxViolation(): int {
-		return $this->config->get("max_violation");
+		return (int) $this->config->get("max_violation");
 	}
 
 	public function getHistorySize(): int {
-		return $this->config->get("history_size");
+		return (int) $this->config->get("history_size");
 	}
 
 	public function getDisconnectMessage(): string {
@@ -54,7 +59,7 @@ class ChlorineConfig {
 	}
 
 	public function getPacketLengthThreshold(): int {
-		return is_float($value = $this->config->get("packet_length_threshold")) ? (int) $value : $value;
+		return (int) $this->config->get("packet_length_threshold");
 	}
 
 	public function getDisconnectScreenMessage(): string {
