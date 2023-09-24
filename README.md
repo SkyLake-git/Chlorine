@@ -1,6 +1,7 @@
 # Chlorine
 
-Block suspicious network activity / 怪しいネットワークアクティビティを検知し、ブロックします  
+Block suspicious network activity / 怪しいネットワークアクティビティを検知し、ブロックします 
+For PocketMine-MP / PocketMine-MP 用プラグイン  
 Supported languages: Japanese / 日本語のみサポート
 
 ## 詳しく教えて
