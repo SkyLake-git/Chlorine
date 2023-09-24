@@ -29,12 +29,12 @@ Supported languages: Japanese / 日本語のみサポート
 | ---- | ---- | ---- |
 | `disconnect_message` | コンソールに表示される切断時のメッセージ | Suspicious activity detected |
 | `disconnect_screen_message` | プレイヤーに表示される切断時のメッセージ | Disconnected from server |
-| `decoding_load_threshold` | 一発処罰の閾値 (デコード時間) | 10.0 |
+| `decoding_load_threshold` | 一発処罰の閾値 (デコード時間割合) | 10.0 |
 | `packet_length_threshold` | 一発処罰の閾値 (パケットサイズ) | 2097152 |
 | `max_violation` | 最大警告レベル (超えると処罰) | 350 |
 | `history_length` | パケット履歴の最大サイズ (大きくするとメモリ使用量が増加します) | 200 |
 | `block_address_timeout` | 処罰したプレイヤーのアドレスをブロックする時間 (0以下で無効、無効にするとキックのみ) | 350 |
-| `decoding_load_violation_thresholds` | 以下レベルの警告を実行する閾値 | [詳細](#decoding_load_violation_thresholds) |
+| `decoding_load_violation_thresholds` | 以下レベルの警告を実行する閾値 (デコード時間割合) | [詳細](#decoding_load_violation_thresholds) |
 
 ### `decoding_load_violation_thresholds`
 | レベル | 警告数 | デフォルト値 |
