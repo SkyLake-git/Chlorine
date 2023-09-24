@@ -20,7 +20,7 @@ Supported languages: Japanese / 日本語のみサポート
 サーバー内で最も怪しいプレイヤーのインスペクション結果を表示します
 
 ## コンフィグ
-`plugin_data/Chlorine/config.yml`  
+`plugin_data/Chlorine/config.yml` から編集できます  
 
 補足: 
 `decoding load` はサーバーの1tick (50ms)のうちデコード時間が占める割合
